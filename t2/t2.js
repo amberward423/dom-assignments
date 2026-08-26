@@ -28,3 +28,10 @@ const todoList = [
 ];
 
 // add your code here
+const ul = document.getElementById('ul');
+
+for (let todo of todoList) {
+  const li = document.createElement('li');
+
+  console.log(todo);
+}
