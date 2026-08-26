@@ -771,3 +771,37 @@ const restaurants = [
 ];
 
 // your code here
+
+//{
+  //  location: {type: 'Point', coordinates: [24.903147, 60.221729]},
+   //  _id: '6470d38ecb12107db6fe24c2',
+   //  companyId: 1580536,
+   //  name: 'Ravintola Stadin AO Ilkantie',
+  //   address: 'Ilkantie 3',
+   //  postalCode: '00400',
+   //  city: 'Helsinki',
+   //  phone: '+358 (0) 50 4710 211',
+   //  company: 'Sodexo',
+  //   __v: 0,
+  // },
+
+  const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
+};
+
+function success(pos) {
+  const crd = pos.coords;
+
+  console.log("Your current position is:");
+  console.log(`Latitude: ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
