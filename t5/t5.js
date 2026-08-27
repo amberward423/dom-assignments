@@ -771,3 +771,42 @@ const restaurants = [
 ];
 
 // your code here
+
+console.log(restaurants, 'restaurants');
+
+var map = L.map('map').setView([60.1699, 24.9384], 13);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+
+
+//var popup = L.popup();
+
+//function onMapClick(e) {
+//    popup
+ //       .setLatLng(e.latlng)
+ //       .setContent("You clicked the map at " + e.latlng.toString())
+//        .openOn(map);
+//}
+
+//map.on('click', onMapClick);
+
+
+for (let i = 0; i < restaurants.length; i++) {
+    const spot = restaurants[i].location.coordinates;
+    
+  var marker = L.marker([spot[1], spot[0]]).addTo(map);
+  var popup = L.popup();
+
+  function onMarkerClick(){
+    popup 
+    .setLatLng([spot[1], spot[0]])
+    .setContent(`<h3>Restaurant Name: ${restaurants[i].name}</h3><p>Restaurant Address: ${restaurants[i].address}</p>`)
+    .openOn(map);
+    
+  }
+  marker.on('click', onMarkerClick);
+}
