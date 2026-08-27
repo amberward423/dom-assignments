@@ -770,71 +770,73 @@ const restaurants = [
   },
 ];
 
+
+
+
+
 // your code here
 
 //{
-  //  location: {type: 'Point', coordinates: [24.903147, 60.221729]},
-   //  _id: '6470d38ecb12107db6fe24c2',
-   //  companyId: 1580536,
-   //  name: 'Ravintola Stadin AO Ilkantie',
-  //   address: 'Ilkantie 3',
-   //  postalCode: '00400',
-   //  city: 'Helsinki',
-   //  phone: '+358 (0) 50 4710 211',
-   //  company: 'Sodexo',
-  //   __v: 0,
-  // },
-console.log(restaurants,'restaurants');
+//  location: {type: 'Point', coordinates: [24.903147, 60.221729]},
+//  _id: '6470d38ecb12107db6fe24c2',
+//  companyId: 1580536,
+//  name: 'Ravintola Stadin AO Ilkantie',
+//  address: 'Ilkantie 3',
+//  postalCode: '00400',
+//  city: 'Helsinki',
+//  phone: '+358 (0) 50 4710 211',
+//  company: 'Sodexo',
+//  __v: 0,
+// },
+
+console.log(restaurants, 'restaurants');
 
 const table = document.querySelector('table');
 
-  const options = {
+const options = {
   enableHighAccuracy: true,
   timeout: 5000,
   maximumAge: 0,
 };
 
-
-
 function success(pos) {
   const crd = pos.coords;
 
-  console.log("Your current position is:");
+  console.log('Your current position is:');
   console.log(`Latitude: ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
   console.log(`More or less ${crd.accuracy} meters.`);
-
-  let r_lon = restaurants[0].location.coordinates[0];
-  let r_lat = restaurants[0].location.coordinates[1];
+for (let i = 0; i < restaurants.length; i++) {
+  let r_lon = restaurants[i].location.coordinates[0];
+  let r_lat = restaurants[i].location.coordinates[1];
   let x_2 = crd.longitude;
   let y_2 = crd.latitude;
 
-    let Distance = Math.sqrt((r_lon - x_2) ** 2 + (r_lat - y_2) ** 2);
-console.log(`Distance to the first restaurant: ${Distance}`);
+  restaurants[i].Distance = Math.sqrt(
+    (r_lon - x_2) ** 2 + (r_lat - y_2) ** 2
+  );
 
+  console.log(`Distance: ${restaurants[i].Distance}`);
 }
-
-
+}
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
-
-for (let restaurant of restaurants) {
-
+for (let i = 0; i < restaurants.length; i++) {
   const tr = document.createElement('tr');
   const td_name = document.createElement('td');
   const td_address = document.createElement('td');
 
-  console.log(restaurant);
+  console.log(restaurants[i]);
   table.appendChild(td_name);
   table.appendChild(td_address);
   table.appendChild(tr);
 
-td_name.innerText = restaurant.name;
-td_address.innerText = restaurant.address;
+  td_name.innerText = restaurants[i].name;
+  td_address.innerText = restaurants[i].address;
 
-restaurants.sort((a, b) => a.distance - b.distance);
-}  
+  restaurants.sort((a, b) => a.Distance - b.Distance);
+}
