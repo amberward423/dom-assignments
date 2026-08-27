@@ -797,12 +797,17 @@ const restaurants = [
    //  company: 'Sodexo',
   //   __v: 0,
   // },
+console.log(restaurants,'restaurants');
+
+const table = document.querySelector('table');
 
   const options = {
   enableHighAccuracy: true,
   timeout: 5000,
   maximumAge: 0,
 };
+
+
 
 function success(pos) {
   const crd = pos.coords;
@@ -811,7 +816,17 @@ function success(pos) {
   let latitude = console.log(`Latitude: ${crd.latitude}`);
   let longitude= console.log(`Longitude: ${crd.longitude}`);
   console.log(`More or less ${crd.accuracy} meters.`);
+
+  let r_lon = restaurants[0].location.coordinates[0];
+  let r_lat = restaurants[0].location.coordinates[1];
+  let x_2 = crd.longitude;
+  let y_2 = crd.latitude;
+
+    let Distance = Math.sqrt((r_lon - x_2) ** 2 + (r_lat - y_2) ** 2);
+console.log(`Distance to the first restaurant: ${Distance}`);
+
 }
+
 
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -820,6 +835,7 @@ function error(err) {
 navigator.geolocation.getCurrentPosition(success, error, options);
 
 
+<<<<<<< HEAD
 let  = prompt('Enter the x coordinate of the first point:');
 let y_1 = prompt('Enter the y coordinate of the first point:');
 let x_2 = prompt('Enter the x coordinate of the second point:');
@@ -835,3 +851,23 @@ document.getElementById('x_2').innerHTML = 'Second X coordinate:' + x_2;
 document.getElementById('y_2').innerHTML = 'Second Y coordinate: ' + y_2;
 document.getElementById('Distance').innerHTML =
   'Calculated Distance ' + Distance;
+=======
+for (let restaurant of restaurants) {
+
+  const tr = document.createElement('tr');
+  const td_name = document.createElement('td');
+  const td_address = document.createElement('td');
+
+  console.log(restaurant);
+  table.appendChild(td_name);
+  table.appendChild(td_address);
+  table.appendChild(tr);
+
+td_name.innerText = restaurant.name;
+td_address.innerText = restaurant.address;
+
+restaurants.sort((a, b) => a.distance - b.distance);
+}  
+
+
+>>>>>>> 88c8224 (finish ts4)
