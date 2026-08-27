@@ -770,21 +770,8 @@ const restaurants = [
   },
 ];
 
- {
-    location: {type: 'Point', coordinates: [25.018456, 60.228982]},
-    _id: '6470d38ecb12107db6fe24c1',
-    companyId: 68,
-    name: 'Ravintola Ladonlukko',
-    address: 'Latokartanonkaari 9 A',
-    postalCode: '00790',
-    city: 'Helsinki',
-    phone:
-      '+358 50 4653899 Ravintolan esimies +358 50 435 8072 Kokoustarjoilut /ravintola',
-    company: 'Sodexo',
-    __v: 0,
-  },
-
 // your code here
+
 //{
   //  location: {type: 'Point', coordinates: [24.903147, 60.221729]},
    //  _id: '6470d38ecb12107db6fe24c2',
@@ -813,8 +800,8 @@ function success(pos) {
   const crd = pos.coords;
 
   console.log("Your current position is:");
-  let latitude = console.log(`Latitude: ${crd.latitude}`);
-  let longitude= console.log(`Longitude: ${crd.longitude}`);
+  console.log(`Latitude: ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
   console.log(`More or less ${crd.accuracy} meters.`);
 
   let r_lon = restaurants[0].location.coordinates[0];
@@ -835,23 +822,6 @@ function error(err) {
 navigator.geolocation.getCurrentPosition(success, error, options);
 
 
-<<<<<<< HEAD
-let  = prompt('Enter the x coordinate of the first point:');
-let y_1 = prompt('Enter the y coordinate of the first point:');
-let x_2 = prompt('Enter the x coordinate of the second point:');
-let y_2 = prompt('Enter the y coordinate of the second point:');
-
-let Distance = Math.sqrt((x_2 - x_1) ** 2 + (y_2 - y_1) ** 2);
-
-console.log(Distance);
-
-document.getElementById('x_1').innerHTML = 'First X coordinate: ' + x_1;
-document.getElementById('y_1').innerHTML = 'First Y coordinate:' + y_1;
-document.getElementById('x_2').innerHTML = 'Second X coordinate:' + x_2;
-document.getElementById('y_2').innerHTML = 'Second Y coordinate: ' + y_2;
-document.getElementById('Distance').innerHTML =
-  'Calculated Distance ' + Distance;
-=======
 for (let restaurant of restaurants) {
 
   const tr = document.createElement('tr');
@@ -868,6 +838,3 @@ td_address.innerText = restaurant.address;
 
 restaurants.sort((a, b) => a.distance - b.distance);
 }  
-
-
->>>>>>> 88c8224 (finish ts4)
