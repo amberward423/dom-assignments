@@ -785,3 +785,53 @@ const restaurants = [
   },
 
 // your code here
+//{
+  //  location: {type: 'Point', coordinates: [24.903147, 60.221729]},
+   //  _id: '6470d38ecb12107db6fe24c2',
+   //  companyId: 1580536,
+   //  name: 'Ravintola Stadin AO Ilkantie',
+  //   address: 'Ilkantie 3',
+   //  postalCode: '00400',
+   //  city: 'Helsinki',
+   //  phone: '+358 (0) 50 4710 211',
+   //  company: 'Sodexo',
+  //   __v: 0,
+  // },
+
+  const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
+};
+
+function success(pos) {
+  const crd = pos.coords;
+
+  console.log("Your current position is:");
+  let latitude = console.log(`Latitude: ${crd.latitude}`);
+  let longitude= console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+let  = prompt('Enter the x coordinate of the first point:');
+let y_1 = prompt('Enter the y coordinate of the first point:');
+let x_2 = prompt('Enter the x coordinate of the second point:');
+let y_2 = prompt('Enter the y coordinate of the second point:');
+
+let Distance = Math.sqrt((x_2 - x_1) ** 2 + (y_2 - y_1) ** 2);
+
+console.log(Distance);
+
+document.getElementById('x_1').innerHTML = 'First X coordinate: ' + x_1;
+document.getElementById('y_1').innerHTML = 'First Y coordinate:' + y_1;
+document.getElementById('x_2').innerHTML = 'Second X coordinate:' + x_2;
+document.getElementById('y_2').innerHTML = 'Second Y coordinate: ' + y_2;
+document.getElementById('Distance').innerHTML =
+  'Calculated Distance ' + Distance;
